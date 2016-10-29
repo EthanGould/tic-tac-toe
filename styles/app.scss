@@ -1,0 +1,36 @@
+$module-name: 'board';
+
+.#{$module-name} {
+	margin: 100px auto 0;
+	padding: 20px;
+
+	&__cell {
+		position: relative;
+		height: 100px;
+		width: 100px;
+		border: 2px solid grey;
+		cursor: pointer;
+		text-align: center;
+		font-family: sans-serif;
+		transition: background-color 1s;
+
+		&:hover {
+			background-color: lightgrey;
+		}
+
+		&.x {
+			&:after {
+				display: block;
+				content: 'x';
+			}
+		}
+
+		&.o {
+			&:after {
+				display: block;
+				content: 'o';
+			}
+		}
+	}
+
+}
