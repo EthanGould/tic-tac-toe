@@ -3,6 +3,20 @@ $module-name: 'board';
 .#{$module-name} {
 	margin: 100px auto 0;
 	padding: 20px;
+	border-collapse: collapse;
+
+
+	&__row {
+
+		&.winner {
+			box-shadow: 0 0 5px green;
+
+			.#{$module-name}__cell {
+				background-color: mintcream;
+				border: 2px solid green;
+			}
+		}
+	}
 
 	&__cell {
 		position: relative;
@@ -12,7 +26,8 @@ $module-name: 'board';
 		cursor: pointer;
 		text-align: center;
 		font-family: sans-serif;
-		transition: background-color 1s;
+		font-size: 28px;
+		transition: background-color 0.5s;
 
 		&:hover {
 			background-color: lightgrey;
@@ -32,5 +47,4 @@ $module-name: 'board';
 			}
 		}
 	}
-
 }

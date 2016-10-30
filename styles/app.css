@@ -1,6 +1,12 @@
 .board {
   margin: 100px auto 0;
-  padding: 20px; }
+  padding: 20px;
+  border-collapse: collapse; }
+  .board__row.winner {
+    box-shadow: 0 0 5px green; }
+    .board__row.winner .board__cell {
+      background-color: mintcream;
+      border: 2px solid green; }
   .board__cell {
     position: relative;
     height: 100px;
@@ -9,7 +15,8 @@
     cursor: pointer;
     text-align: center;
     font-family: sans-serif;
-    transition: background-color 1s; }
+    font-size: 28px;
+    transition: background-color 0.5s; }
     .board__cell:hover {
       background-color: lightgrey; }
     .board__cell.x:after {
