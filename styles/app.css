@@ -2,11 +2,6 @@
   margin: 100px auto 0;
   padding: 20px;
   border-collapse: collapse; }
-  .board__row.winner {
-    box-shadow: 0 0 5px green; }
-    .board__row.winner .board__cell {
-      background-color: mintcream;
-      border: 2px solid green; }
   .board__cell {
     position: relative;
     height: 100px;
@@ -17,6 +12,14 @@
     font-family: sans-serif;
     font-size: 28px;
     transition: background-color 0.5s; }
+    .board__cell.winner {
+      background-color: mintcream;
+      border: 2px solid green;
+      box-shadow: 0 0 5px green; }
+      .board__cell.winner:hover {
+        background-color: mintcream; }
+    .board__cell.disabled {
+      pointer-events: none; }
     .board__cell:hover {
       background-color: lightgrey; }
     .board__cell.x:after {
