@@ -18,26 +18,34 @@ $(document).ready(function() {
 	};
 
 	module.makeMove = function(event) {
-		var cell = $(event.target);
+		var $cell = $(event.target);
 		var move = module.moveCount % 2 === 0 ? 'x' : 'o';
-		cell.addClass(move);
+		
+		if ( !$cell.is('.disabled') ) {
+			$cell.addClass(move);
+			// Increment move count to keep track of whos turn it is.
+			module.moveCount++;
+		};
+
+		$cell.addClass('disabled');
 
 		// After the 5th move, start watching for a winner.
 		if (module.moveCount >= 4) {
 			module.checkForWinner(move);
 		}
-		// Increment moveCount.
-		module.moveCount++;
+		
 	}
 
 	module.checkForWinner = function(move) {
-		// Check each row for a hirizontal win.
-		module.checkHorizontal(move);
-
 		// Check each column for vertical win.
 		$.each([0,1,2], function(index, column) {
 			module.checkVertical(move, column);
 		});
+
+		// Check each row for a hirizontal win.
+		module.checkHorizontal(move);
+		// Check each column for diagonal win.
+		module.checkDiagonal(move);
 	};
 
 	module.checkHorizontal = function(move) {
@@ -70,6 +78,24 @@ $(document).ready(function() {
 			});
 		}
 	}
+
+	module.checkDiagonal = function(move) {
+		var diagonalCount = 0
+		// Does x/o have 3 in a row, horizontally?
+		$.each(module.rows, function(index, row) {
+			if ( $(row.cells[index]).hasClass(move) ) {
+				diagonalCount++;
+			}
+		});
+
+		if (3 === diagonalCount) {
+			$.each(module.rows, function(index, row) {
+				// Marked the winning column's cells as winning cell.
+				$(row.cells[index]).addClass('winner');
+				module.cells.addClass('disabled');
+			});
+		}
+	};
 
 	module.eventHandlers();
 })
